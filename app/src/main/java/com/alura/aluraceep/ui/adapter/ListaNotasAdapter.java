@@ -1,6 +1,7 @@
 package com.alura.aluraceep.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ public class ListaNotasAdapter extends BaseAdapter {
     public View getView(int posicao, View view, ViewGroup viewGroup) {
         View viewCriada = LayoutInflater.from(context).inflate(R.layout.item_nota, viewGroup, false);
         Nota nota = notas.get(posicao);
+        Log.i("getView", "getView: " + nota.getDescricao());
+
 
         TextView titulo = viewCriada.findViewById(R.id.item_nota_titulo);
         titulo.setText(nota.getTitulo());

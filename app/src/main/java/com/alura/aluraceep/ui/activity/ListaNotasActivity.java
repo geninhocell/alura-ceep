@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,11 +34,21 @@ public class ListaNotasActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        NotaDAO notaDAO = new NotaDAO();
+        List<Nota> todasNotas = notaDAO.todos();
+        configuraRecyclerView(todasNotas);
+        super.onResume();
+    }
+
     private List<Nota> notasDeExemplo() {
         NotaDAO notaDAO = new NotaDAO();
-        for (int i = 0; i < 10000; i++) {
-            notaDAO.insere(new Nota("Nota " + i, "descrição " + 1));
-        }
+//        for (int i = 0; i < 10000; i++) {
+//            notaDAO.insere(new Nota("Nota " + i, "descrição " + i));
+//        }
+        notaDAO.insere(new Nota("Primeira Nota", "Primeira descrição" ));
+        notaDAO.insere(new Nota("Segunda Nota", "Segunda descrição"));
         List<Nota> todasNotas = notaDAO.todos();
         return todasNotas;
     }

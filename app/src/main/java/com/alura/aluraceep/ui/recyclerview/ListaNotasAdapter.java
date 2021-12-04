@@ -63,7 +63,7 @@ public class ListaNotasAdapter extends RecyclerView.Adapter<ListaNotasAdapter.No
         }
 
         public void vincula(Nota nota){
-            titulo.setText(nota.getDescricao());
+            titulo.setText(nota.getTitulo());
             descricao.setText(nota.getDescricao());
         }
     }
