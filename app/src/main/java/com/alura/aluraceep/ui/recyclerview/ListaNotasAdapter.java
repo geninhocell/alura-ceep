@@ -42,7 +42,6 @@ public class ListaNotasAdapter extends RecyclerView.Adapter<ListaNotasAdapter.No
         holder.vincula(nota);
 
         quantidadeBindView++;
-        Log.i("recyclerView Adapter", "bind view holder: posição" + position + " quantidade " + quantidadeBindView);
     }
 
     @Override

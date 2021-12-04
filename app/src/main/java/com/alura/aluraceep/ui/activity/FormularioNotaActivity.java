@@ -1,5 +1,8 @@
 package com.alura.aluraceep.ui.activity;
 
+import static com.alura.aluraceep.ui.activity.NotaActivityConstantes.CHAVE_NOTA;
+import static com.alura.aluraceep.ui.activity.NotaActivityConstantes.CODIGO_RESULTADO_NOTA_CRIADA;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +18,7 @@ import com.alura.aluraceep.ui.model.Nota;
 
 public class FormularioNotaActivity extends AppCompatActivity {
 
-    public static final String CHAVE_NOTA = "nota";
-    public static final int CODIGO_RESULTADO_NOTA_CRIADA = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
