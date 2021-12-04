@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alura.aluraceep.R;
 import com.alura.aluraceep.ui.dao.NotaDAO;
@@ -21,10 +23,14 @@ public class ListaNotasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_notas);
 
-
         List<Nota> todasNotas = notasDeExemplo();
-
         configuraRecyclerView(todasNotas);
+
+        TextView botaoInsereNota = findViewById(R.id.lista_notas_insere_nota);
+        botaoInsereNota.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FormularioNotaActivity.class);
+            startActivity(intent);
+        });
     }
 
     private List<Nota> notasDeExemplo() {

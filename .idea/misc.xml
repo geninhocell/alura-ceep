@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/fundo_gradiente_insere_nota.xml" value="0.190625" />
+        <entry key="app/src/main/res/layout/activity_formulario_nota.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_lista_notas.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_nota.xml" value="0.22" />
       </map>
