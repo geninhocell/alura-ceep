@@ -1,14 +1,13 @@
 package com.alura.aluraceep.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alura.aluraceep.R;
 import com.alura.aluraceep.ui.dao.NotaDAO;
@@ -30,28 +29,31 @@ public class ListaNotasActivity extends AppCompatActivity {
         todasNotas = notasDeExemplo();
         configuraRecyclerView(todasNotas);
 
+        ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == 2) {
+                        Intent data = result.getData();
+                        Nota notaRecebida = (Nota) data.getSerializableExtra("nota");
+                        new NotaDAO().insere(notaRecebida);
+                        adapter.adiciona(notaRecebida);
+                    }
+                });
+
         TextView botaoInsereNota = findViewById(R.id.lista_notas_insere_nota);
         botaoInsereNota.setOnClickListener(v -> {
             Intent intent = new Intent(this, FormularioNotaActivity.class);
-            startActivity(intent);
+            someActivityResultLauncher.launch(intent);
         });
     }
 
-    @Override
-    protected void onResume() {
-        NotaDAO notaDAO = new NotaDAO();
-        todasNotas.clear();
-        todasNotas.addAll(notaDAO.todos());
-        adapter.notifyDataSetChanged();
-        super.onResume();
-    }
 
     private List<Nota> notasDeExemplo() {
         NotaDAO notaDAO = new NotaDAO();
 //        for (int i = 0; i < 10000; i++) {
 //            notaDAO.insere(new Nota("Nota " + i, "descrição " + i));
 //        }
-        notaDAO.insere(new Nota("Primeira Nota", "Primeira descrição" ));
+        notaDAO.insere(new Nota("Primeira Nota", "Primeira descrição"));
         notaDAO.insere(new Nota("Segunda Nota", "Segunda descrição"));
         List<Nota> todasNotas = notaDAO.todos();
         return todasNotas;
